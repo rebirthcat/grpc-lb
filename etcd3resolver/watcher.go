@@ -1,4 +1,4 @@
-package etcd3
+package etcd3resolver
 
 import (
 	"encoding/json"

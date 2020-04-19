@@ -1,4 +1,4 @@
-package etcd3
+package etcd3resolver
 
 import (
 	etcd_cli "github.com/coreos/etcd/clientv3"
