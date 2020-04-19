@@ -1,4 +1,4 @@
-module dhtianqi_statistic
+module grpc-lb
 
 go 1.14
 
