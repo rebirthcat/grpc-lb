@@ -88,11 +88,18 @@ func (w *Watcher) Watch() chan []resolver.Address {
 }
 
 func convertEventToAddress(kv *mvccpb.KeyValue,address *resolver.Address) error  {
+	//获取地址("ip:port")
 	arr := strings.Split(string(kv.Key), "/")
 	if arr==nil||len(arr)==0 {
 		return errors.New("invalid key")
 	}
-	address.Addr=arr[len(arr)-1]
+	last:=arr[len(arr)-1]
+	lastArr:=strings.Split(last,"-")
+	if lastArr==nil||len(lastArr)==0 {
+		return errors.New("invalid key")
+	}
+	address.Addr=lastArr[len(arr)-1]
+	//获取属性
 	attr := make(map[string]interface{}, 0)
 	if err := json.Unmarshal(kv.Value, &attr); err != nil && len(attr) > 0 {
 		kvs := make([]interface{}, 0)
